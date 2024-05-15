@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Message, MessageHandler
+from .models import Message, MessageHandler, WhatsappSender
 
 # Register your models here.
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone_number', 'email', 'track_id']
+    list_display = ['name', 'phone_number', 'email_address', 'track_id']
 
 class MessageHandlerAdmin(admin.ModelAdmin):
     list_display = ['message', 'email']
@@ -11,3 +11,4 @@ class MessageHandlerAdmin(admin.ModelAdmin):
 
 admin.site.register(Message, MessageAdmin)
 admin.site.register(MessageHandler, MessageHandlerAdmin)
+admin.site.register(WhatsappSender)

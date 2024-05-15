@@ -11,7 +11,7 @@ import time
 class Message(models.Model):
     name = models.CharField(max_length=100)
     phone_number = PhoneNumberField(blank=True)
-    email = models.EmailField(blank=True) 
+    email_address = models.EmailField(blank=True) 
     track_id = models.IntegerField(default=0)
 
     def __str__(self):
@@ -29,32 +29,33 @@ class MessageHandler(models.Model):
         return self.message
         
        
-# class WhatsappSender(models.Model):
+class WhatsappSender(models.Model):
 
-#     def get_user_data(self):
-#         user_names = list(Message.objects.values_list('name', flat=True))
-#         user_numbers = list(Message.objects.values_list('phone_number', flat=True))
-#         return user_names, user_numbers
+    def get_user_data(self):
+        user_names = list(Message.objects.values_list('name', flat=True))
+        user_numbers = list(Message.objects.values_list('phone_number', flat=True))
+        user_mess = list(MessageHandler.objects.values_list('message', flat=True))
+       
+        return user_names, user_numbers, user_mess
 
-#     def __str__(self):
-#         user_names, user_numbers = self.get_user_data()
+    def __str__(self):
+        user_names, user_numbers, user_mess = self.get_user_data()
 
-#         national_numbers = [phone_number.national_number for phone_number in user_numbers]
+        national_numbers = [phone_number.national_number for phone_number in user_numbers]
+        print(national_numbers)
 
-#         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-#         link = 'https://web.whatsapp.com'
-#         driver.get(link)
-#         time.sleep(30)
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        link = 'https://web.whatsapp.com'
+        driver.get(link)
+        time.sleep(2000)
         
-#         for n in national_numbers:
+        for n in national_numbers:
 
-#             link2 = f'https://web.whatsapp.com/send/?phone={n}&text={self.message}'
-#             driver.get(link2)
-#             time.sleep(100)
-#             action = ActionChains(driver)
-#             action.send_keys(Keys.ENTER)
-#             action.perform()
-#             time.sleep(10)
-
-#         time.sleep(2000)
+            link2 = f'https://web.whatsapp.com/send/?phone=880{n}&text={user_mess[0]}'
+            driver.get(link2)
+            time.sleep(100)
+            action = ActionChains(driver)
+            action.send_keys(Keys.ENTER)
+            action.perform()
+            time.sleep(10)
     
