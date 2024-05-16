@@ -72,6 +72,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'TwilioDjango.wsgi.application'
 
 
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  # Update with your SMTP port
+EMAIL_USE_TLS = True  # Set it to True if your SMTP server requires TLS
+EMAIL_HOST_USER = 'hfarisha06@gmail.com'  # Update with your SMTP username/email
+EMAIL_HOST_PASSWORD = 'dmoc vopc sozf qqgf'  # Update with your SMTP password
+DEFAULT_FROM_EMAIL = 'hfarisha06@gmail.com' 
+
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
