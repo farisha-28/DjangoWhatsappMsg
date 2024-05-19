@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Users, MessageHandler, WhatsappSender
+from .models import Users, MessageHandler, WhatsappSender, EmailSender
 
 # Register your models here.
 class UsersAdmin(admin.ModelAdmin):
@@ -12,3 +12,4 @@ class MessageHandlerAdmin(admin.ModelAdmin):
 admin.site.register(Users, UsersAdmin)
 admin.site.register(MessageHandler, MessageHandlerAdmin)
 admin.site.register(WhatsappSender)
+admin.site.register(EmailSender)
